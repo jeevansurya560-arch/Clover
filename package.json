@@ -46,5 +46,9 @@
   "license": "MIT",
   "dependencies": {
     "@supabase/supabase-js": "^2.119.2"
+  },
+  "devDependencies": {
+    "tweetsodium": "^0.0.4",
+    "wrangler": "^4.166.0"
   }
 }

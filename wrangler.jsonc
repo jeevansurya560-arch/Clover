@@ -46,6 +46,7 @@
   // Production Environment
   "env": {
     "production": {
+      "main": "./apps/api/src/cloudflare-worker.js",
       "durable_objects": {
         "bindings": [
           {
@@ -62,6 +63,7 @@
     },
     // Preview Environment for staging / PR branches
     "preview": {
+      "main": "./apps/api/src/cloudflare-worker.js",
       "durable_objects": {
         "bindings": [
           {
