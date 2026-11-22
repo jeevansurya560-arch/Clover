@@ -6,11 +6,13 @@ const { Pool } = pg;
 export let pool = null;
 export let isUsingPostgres = false;
 
-// Attempt to initialize real PostgreSQL Pool
+// Attempt to initialize real PostgreSQL Pool (supports direct Postgres & Supabase Pooler)
 try {
+  const isSupabaseOrSSL = config.databaseUrl.includes('supabase.co') || config.databaseUrl.includes('sslmode=require');
   pool = new Pool({
     connectionString: config.databaseUrl,
-    connectionTimeoutMillis: 2000,
+    ssl: isSupabaseOrSSL ? { rejectUnauthorized: false } : false,
+    connectionTimeoutMillis: 5000,
     idleTimeoutMillis: 10000,
     max: 10
   });

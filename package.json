@@ -27,7 +27,11 @@
     "db:migrate": "node apps/api/src/database/migrate.js",
     "db:seed": "node apps/api/src/database/seed.js",
     "db:backup": "node scripts/backup-db.js",
-    "db:restore": "node scripts/restore-db.js"
+    "db:restore": "node scripts/restore-db.js",
+    "build:cf": "npm run build --workspace=apps/web",
+    "deploy:cf": "npm run build:cf && npx wrangler deploy --env production",
+    "deploy:preview": "npm run build:cf && npx wrangler deploy --env preview",
+    "supabase:keepalive": "node scripts/supabase-keepalive.js"
   },
   "keywords": [
     "household",
@@ -39,5 +43,8 @@
     "fastify"
   ],
   "author": "RoomSync Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.119.2"
+  }
 }

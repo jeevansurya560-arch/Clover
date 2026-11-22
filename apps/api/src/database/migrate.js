@@ -12,9 +12,13 @@ const { Client } = pg;
 
 async function runMigrations() {
   const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/roomsync';
+  const isSupabaseOrSSL = connectionString.includes('supabase.co') || connectionString.includes('sslmode=require');
   console.log(`[Migration] Connecting to PostgreSQL at ${connectionString}...`);
 
-  const client = new Client({ connectionString });
+  const client = new Client({
+    connectionString,
+    ssl: isSupabaseOrSSL ? { rejectUnauthorized: false } : false
+  });
   await client.connect();
 
   console.log('Connected to PostgreSQL successfully.');

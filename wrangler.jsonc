@@ -1,0 +1,64 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "clover",
+  "main": "./apps/api/src/cloudflare-worker.js",
+  "compatibility_date": "2024-11-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+
+  // Serve Next.js frontend static build from apps/web/out
+  "assets": {
+    "directory": "./apps/web/out",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+
+  // Real-Time Coordination via Cloudflare Durable Objects
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "HOUSEHOLD_REALTIME",
+        "class_name": "HouseholdRealtimeDO"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["HouseholdRealtimeDO"]
+    }
+  ],
+
+  // Background Processing via Cloudflare Cron Triggers (replaces BullMQ/Redis)
+  "triggers": {
+    "crons": [
+      "0 * * * *",  // Hourly: Chore rotation & recurring bills check
+      "0 4 * * *"   // Daily: Outbox cleanup & retention sweep
+    ]
+  },
+
+  // Observability & Logs
+  "observability": {
+    "enabled": true
+  },
+
+  // Production Environment
+  "env": {
+    "production": {
+      "vars": {
+        "NODE_ENV": "production",
+        "NEXT_PUBLIC_API_URL": "",
+        "NEXT_PUBLIC_SOCKET_URL": ""
+      }
+    },
+    // Preview Environment for staging / PR branches
+    "preview": {
+      "vars": {
+        "NODE_ENV": "production",
+        "NEXT_PUBLIC_API_URL": "",
+        "NEXT_PUBLIC_SOCKET_URL": ""
+      }
+    }
+  }
+}
