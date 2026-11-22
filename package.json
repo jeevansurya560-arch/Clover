@@ -1,8 +1,8 @@
 {
-  "name": "roomsync",
+  "name": "clover",
   "version": "1.0.0",
   "private": true,
-  "description": "RoomSync — Collaborative real-time shared household workspace for roommates",
+  "description": "Clover 🍀 — Collaborative real-time shared household workspace for roommates",
   "type": "module",
   "workspaces": [
     "packages/*",

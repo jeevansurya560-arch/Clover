@@ -1,7 +1,7 @@
-# RoomSync 🏠✨
+# Clover 🍀✨
 > **One household. One shared workspace. Everything synchronized.**
 
-RoomSync is a collaborative, real-time shared household workspace for roommates, bringing finances, shared shopping, chore rotations, recurring bills, and decision polls into a unified digital apartment.
+Clover is a collaborative, real-time shared household workspace for roommates, bringing finances, shared shopping, chore rotations, recurring bills, and decision polls into a unified digital apartment.
 
 Designed with the **Dreamhouse Arcade** visual identity (**Neo-Brutalism + Ethereal Pastel + Pixel Art**).
 

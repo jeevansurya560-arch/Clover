@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRoomSync } from '../../lib/context.jsx';
 import { fetchApi } from '../../lib/api.js';
 import {
+  PixelClover,
   PixelHouse,
   PixelCat,
   PixelCoins,
@@ -172,7 +173,7 @@ export function MasterBoardView() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px', paddingBottom: '40px' }}>
       
       {/* ========================================================
-          MASTER TOP BANNER (RoomSync Title & Subtitle)
+          MASTER TOP BANNER (Clover Title & Subtitle)
          ======================================================== */}
       <header
         className="nb-glass"
@@ -186,10 +187,10 @@ export function MasterBoardView() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <PixelHouse size={34} />
+          <PixelClover size={34} />
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap' }}>
             <span style={{ fontFamily: 'var(--font-heading)', fontSize: '28px', fontWeight: 800, color: '#30263E', letterSpacing: '-0.03em' }}>
-              RoomSync
+              Clover 🍀
             </span>
             <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-muted)' }}>
               One household. One shared workspace. Everything synchronized.

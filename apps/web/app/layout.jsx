@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'RoomSync — Shared Household Workspace',
+  title: 'Clover 🍀 — Shared Household Workspace',
   description: 'One household. One shared workspace. Everything synchronized.',
 };
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRoomSync } from '../lib/context.jsx';
-import { PixelHouse, UserAvatar } from './PixelIcons.jsx';
+import { PixelHouse, PixelClover, UserAvatar } from './PixelIcons.jsx';
 import {
   Home,
   Receipt,
@@ -45,9 +45,9 @@ export function Sidebar() {
     >
       {/* Brand Logo */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 8px 16px', borderBottom: '1px solid #2F3E3E' }}>
-        <PixelHouse size={28} />
+        <PixelClover size={28} />
         <span style={{ fontFamily: 'var(--font-heading)', fontSize: '20px', fontWeight: 800, letterSpacing: '-0.03em' }}>
-          RoomSync
+          Clover
         </span>
       </div>
 

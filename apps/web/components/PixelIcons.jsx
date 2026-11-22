@@ -1,5 +1,18 @@
 import React from 'react';
 
+export function PixelClover({ size = 28, className = '' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
+      <circle cx="8.5" cy="8.5" r="4.5" fill="#B6F0D2" stroke="#30263E" strokeWidth="1.8"/>
+      <circle cx="15.5" cy="8.5" r="4.5" fill="#B6F0D2" stroke="#30263E" strokeWidth="1.8"/>
+      <circle cx="8.5" cy="15.5" r="4.5" fill="#B6F0D2" stroke="#30263E" strokeWidth="1.8"/>
+      <circle cx="15.5" cy="15.5" r="4.5" fill="#B6F0D2" stroke="#30263E" strokeWidth="1.8"/>
+      <circle cx="12" cy="12" r="2" fill="#FFE88A" stroke="#30263E" strokeWidth="1.2"/>
+      <path d="M12 14C12 18 10 21 7 22" stroke="#30263E" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
 export function PixelHouse({ size = 28, className = '' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
