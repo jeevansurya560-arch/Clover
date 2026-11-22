@@ -13,10 +13,14 @@ const { Client } = pg;
 async function runSeed() {
   const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/roomsync';
   const isSupabaseOrSSL = connectionString.includes('supabase.co') || connectionString.includes('sslmode=require');
-  console.log(`[Seed] Connecting to PostgreSQL at ${connectionString}...`);
+  const cleanConnectionString = isSupabaseOrSSL
+    ? connectionString.replace(/([?&])sslmode=[^&]+(&|$)/, '$1').replace(/[?&]$/, '')
+    : connectionString;
+
+  console.log(`[Seed] Connecting to PostgreSQL at ${cleanConnectionString.replace(/:[^:@]+@/, ':***@')}...`);
 
   const client = new Client({
-    connectionString,
+    connectionString: cleanConnectionString,
     ssl: isSupabaseOrSSL ? { rejectUnauthorized: false } : false
   });
   await client.connect();
