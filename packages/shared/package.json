@@ -1,0 +1,13 @@
+{
+  "name": "@roomsync/shared",
+  "version": "1.0.0",
+  "description": "Shared domain models, financial arithmetic, constants and validation for RoomSync",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": ["finance", "shared", "validation"],
+  "author": "RoomSync",
+  "license": "MIT"
+}
