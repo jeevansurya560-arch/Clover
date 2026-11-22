@@ -22,6 +22,10 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Backups
+backups/
+backups-test/
+
 # OS & Editor
 .DS_Store
 Thumbs.db

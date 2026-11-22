@@ -4,6 +4,7 @@ import sensible from '@fastify/sensible';
 import { config } from './config.js';
 import { initSocket } from './realtime/socket.js';
 import { checkDatabaseHealth, closeDatabase } from './database/db.js';
+import { startOutboxDispatcher } from './outbox/dispatcher.js';
 
 // Route Modules
 import { healthRoutes } from './modules/health/routes.js';

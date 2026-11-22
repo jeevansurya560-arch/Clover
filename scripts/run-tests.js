@@ -3,11 +3,14 @@ import { spawn } from 'node:child_process';
 const testSuites = [
   { name: '1. Financial Engine Tests', file: 'tests/financial/finance.test.js' },
   { name: '2. API Integration Tests', file: 'tests/integration/api.test.js' },
-  { name: '3. Security & Multi-Tenant Isolation Tests', file: 'tests/security/security.test.js' }
+  { name: '3. Security & Multi-Tenant Isolation Tests', file: 'tests/security/security.test.js' },
+  { name: '4. Redis Memory Resilience & Eviction Policy Tests', file: 'tests/redis/redis-memory.test.js' },
+  { name: '5. Automated Database Backup & Integrity Tests', file: 'tests/backup/backup.test.js' },
+  { name: '6. Production Environment Safety & Config Tests', file: 'tests/config/env.test.js' }
 ];
 
 console.log('====================================================');
-console.log('   ROOMSYNC AUTOMATED VERIFICATION TEST RUNNER      ');
+console.log('    CLOVER AUTOMATED VERIFICATION TEST RUNNER       ');
 console.log('====================================================\n');
 
 async function runSuite(suite) {
@@ -40,7 +43,7 @@ async function runAll() {
   }
 
   console.log('====================================================');
-  console.log(`🎉 ALL ${passed} TEST SUITES PASSED CLEANLY! (24 tests total)`);
+  console.log(`🎉 ALL ${passed} TEST SUITES PASSED CLEANLY!`);
   console.log('====================================================');
 }
 

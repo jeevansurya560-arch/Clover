@@ -18,11 +18,16 @@
     "test:finance": "node tests/financial/finance.test.js",
     "test:api": "node tests/integration/api.test.js",
     "test:security": "node tests/security/security.test.js",
+    "test:redis": "node tests/redis/redis-memory.test.js",
+    "test:backup": "node tests/backup/backup.test.js",
+    "test:config": "node tests/config/env.test.js",
     "lint": "node scripts/lint-check.js",
     "docker:up": "node scripts/wait-docker.js",
     "docker:down": "docker compose down",
     "db:migrate": "node apps/api/src/database/migrate.js",
-    "db:seed": "node apps/api/src/database/seed.js"
+    "db:seed": "node apps/api/src/database/seed.js",
+    "db:backup": "node scripts/backup-db.js",
+    "db:restore": "node scripts/restore-db.js"
   },
   "keywords": [
     "household",
