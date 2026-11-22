@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Silkscreen&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  /* Dreamhouse Arcade Design Tokens */
+  --canvas-bg: #F5F0FF;          /* Cloud Lavender */
+  --ink-plum: #30263E;           /* Borders, primary text, hard shadows */
+  --pixel-pink: #FF9FBF;         /* Primary actions, expressive highlights */
+  --arcade-lilac: #C5B2FF;       /* Cards and secondary surfaces */
+  --pixel-mint: #B6F0D2;         /* Success, completed states */
+  --soft-glitch: #FFE88A;        /* Attention, accent details */
+  --dream-sky: #A9E4F2;          /* Informational surfaces */
+  --apricot: #F3C5A7;            /* Supporting warm surfaces */
+
+  /* Neutral & Functional Tokens */
+  --surface-card: #FFFFFF;
+  --surface-muted: #EBE4F7;
+  --text-primary: #30263E;
+  --text-muted: #6B5E7D;
+  --text-dim: #9A8DAA;
+  
+  /* Neo-Brutalist Dimensions & Shadows */
+  --border-thick: 2px solid var(--ink-plum);
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-pill: 9999px;
+  --shadow-hard-sm: 2px 2px 0px var(--ink-plum);
+  --shadow-hard-md: 4px 4px 0px var(--ink-plum);
+  --shadow-hard-lg: 6px 6px 0px var(--ink-plum);
+
+  /* Glassmorphism & Blur Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: 2px solid var(--ink-plum);
+  --glass-blur: blur(12px);
+  --modal-backdrop: rgba(48, 38, 62, 0.45);
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-pixel: 'Silkscreen', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--canvas-bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(var(--arcade-lilac) 0.75px, transparent 0.75px),
+    radial-gradient(var(--dream-sky) 0.75px, var(--canvas-bg) 0.75px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.05em;
+}
+
+/* Glassmorphism & Blur Utilities */
+.nb-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--border-thick);
+}
+
+.nb-glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: var(--border-thick);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-hard-md);
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.nb-glass-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+/* Rule of 3 Triadic Composition Grid */
+.rule-of-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .rule-of-three {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Section Header View Tag Pill */
+.nb-view-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--soft-glitch);
+  color: var(--ink-plum);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 12px;
+  border: var(--border-thick);
+  border-radius: var(--border-radius-pill);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+/* Modal Blur Overlay */
+.nb-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--modal-backdrop);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.95) translateY(8px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.nb-modal-content {
+  animation: popUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Neo-Brutalist Component Utilities */
+.nb-card {
+  background: var(--surface-card);
+  border: var(--border-thick);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-hard-md);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.nb-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hard-lg);
+}
+
+.nb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: var(--border-thick);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-hard-sm);
+  cursor: pointer;
+  background: var(--surface-card);
+  color: var(--text-primary);
+  transition: all 0.1s ease;
+  user-select: none;
+}
+
+.nb-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-hard-md);
+}
+
+.nb-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.nb-btn-primary {
+  background: var(--pixel-pink);
+  color: var(--ink-plum);
+}
+
+.nb-btn-mint {
+  background: var(--pixel-mint);
+  color: var(--ink-plum);
+}
+
+.nb-btn-lilac {
+  background: var(--arcade-lilac);
+  color: var(--ink-plum);
+}
+
+.nb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border: var(--border-thick);
+  border-radius: var(--border-radius-pill);
+  box-shadow: 2px 2px 0px var(--ink-plum);
+}
+
+.nb-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: #FFFFFF;
+  border: var(--border-thick);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-hard-sm);
+  outline: none;
+}
+
+.nb-input:focus {
+  border-color: var(--pixel-pink);
+  box-shadow: 3px 3px 0px var(--ink-plum);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--arcade-lilac);
+  border: 1px solid var(--ink-plum);
+  border-radius: 4px;
+}

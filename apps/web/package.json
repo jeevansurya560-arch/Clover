@@ -1,0 +1,22 @@
+{
+  "name": "@roomsync/web",
+  "version": "1.0.0",
+  "description": "RoomSync Next.js App Router Frontend with Dreamhouse Arcade Design System",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@roomsync/shared": "*",
+    "@tanstack/react-query": "^5.62.8",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.469.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "socket.io-client": "^4.8.1"
+  }
+}
