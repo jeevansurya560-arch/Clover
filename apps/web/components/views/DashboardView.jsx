@@ -42,11 +42,11 @@ export function DashboardView() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* Top Banner with Ethereal Gradient & Pixel Cat */}
+      {/* Top Banner with Clean Solid Surface & Pixel Cat */}
       <div
         className="nb-card"
         style={{
-          background: 'linear-gradient(135deg, #F3C5A7 0%, #FF9FBF 40%, #C5B2FF 100%)',
+          background: '#FFFFFF',
           padding: '24px 28px',
           display: 'flex',
           justifyContent: 'space-between',

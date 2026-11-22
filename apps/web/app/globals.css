@@ -53,11 +53,6 @@ body {
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   overflow-x: hidden;
-  background-image: 
-    radial-gradient(var(--arcade-lilac) 0.75px, transparent 0.75px),
-    radial-gradient(var(--dream-sky) 0.75px, var(--canvas-bg) 0.75px);
-  background-size: 32px 32px;
-  background-position: 0 0, 16px 16px;
 }
 
 h1, h2, h3, h4, .font-heading {

@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRoomSync } from '../../lib/context.jsx';
 import { fetchApi } from '../../lib/api.js';
-import { UserAvatar } from '../PixelIcons.jsx';
-import { Plus, Wallet, Sparkles, X, Check } from 'lucide-react';
+import { UserAvatar, PixelCoins } from '../PixelIcons.jsx';
+import { Plus, Wallet, Sparkles, X, Check, ArrowUpRight, ArrowDownLeft, Utensils, Zap, ShoppingBag, CheckCircle2 } from 'lucide-react';
 import { formatINR, toPaise, calculateSplit, SPLIT_TYPES, EXPENSE_CATEGORIES } from '@roomsync/shared';
 
 export function ExpensesView() {
@@ -145,7 +145,9 @@ export function ExpensesView() {
             <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)' }}>You Owe</div>
             <div style={{ fontSize: '24px', fontWeight: 800, color: '#EF4444', marginTop: '2px' }}>{formatINR(youOwePaise)}</div>
           </div>
-          <span style={{ fontSize: '28px' }}>👛</span>
+          <div style={{ padding: '8px', background: 'var(--soft-glitch)', border: '1.5px solid #30263E', borderRadius: '8px' }}>
+            <ArrowDownLeft size={22} color="#EF4444" strokeWidth={2.5} />
+          </div>
         </div>
 
         <div className="nb-card" style={{ padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -153,7 +155,7 @@ export function ExpensesView() {
             <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)' }}>Others Owe You</div>
             <div style={{ fontSize: '24px', fontWeight: 800, color: '#10B981', marginTop: '2px' }}>{formatINR(othersOweYouPaise)}</div>
           </div>
-          <span style={{ fontSize: '28px' }}>🪙</span>
+          <PixelCoins size={36} />
         </div>
       </div>
 
@@ -200,9 +202,9 @@ export function ExpensesView() {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '24px' }}>
-                      {exp.category === 'food' ? '🍕' : exp.category === 'utilities' ? '⚡' : '🛍️'}
-                    </span>
+                    <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'var(--surface-muted)', border: '1.5px solid #30263E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {exp.category === 'food' ? <Utensils size={18} color="#30263E" /> : exp.category === 'utilities' ? <Zap size={18} color="#30263E" /> : <ShoppingBag size={18} color="#30263E" />}
+                    </div>
                     <div>
                       <div style={{ fontWeight: 800, fontSize: '15px' }}>{exp.description}</div>
                       <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
@@ -266,8 +268,8 @@ export function ExpensesView() {
           </div>
 
           {balanceData?.suggestions?.length === 0 ? (
-            <div style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
-              All household balances are completely settled! 🎉
+            <div style={{ fontSize: '14px', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CheckCircle2 size={16} color="#10B981" /> All household balances are completely settled.
             </div>
           ) : (
             balanceData?.suggestions?.map((sugg, idx) => (

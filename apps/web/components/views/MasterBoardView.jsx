@@ -28,7 +28,8 @@ import {
   Sparkles,
   ShoppingBag,
   Receipt,
-  RotateCcw
+  RotateCcw,
+  Utensils
 } from 'lucide-react';
 import { formatINR, toPaise, calculateSplit, SPLIT_TYPES } from '@roomsync/shared';
 
@@ -190,7 +191,7 @@ export function MasterBoardView() {
           <PixelClover size={34} />
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap' }}>
             <span style={{ fontFamily: 'var(--font-heading)', fontSize: '28px', fontWeight: 800, color: '#30263E', letterSpacing: '-0.03em' }}>
-              Clover 🍀
+              Clover
             </span>
             <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-muted)' }}>
               One household. One shared workspace. Everything synchronized.
@@ -225,7 +226,7 @@ export function MasterBoardView() {
       <section style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span className="nb-view-tag">
-            🏠 1. Dashboard
+            1. Dashboard
           </span>
         </div>
 
@@ -233,7 +234,7 @@ export function MasterBoardView() {
         <div
           className="nb-glass-card"
           style={{
-            background: 'linear-gradient(135deg, #F3C5A7 0%, #FF9FBF 40%, #C5B2FF 100%)',
+            background: '#FFFFFF',
             padding: '24px 28px',
             display: 'flex',
             justifyContent: 'space-between',
@@ -426,7 +427,7 @@ export function MasterBoardView() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span className="nb-view-tag" style={{ background: 'var(--pixel-pink)' }}>
-              💸 2. Expenses & Settlements
+              2. Expenses & Settlements
             </span>
             <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#30263E' }}>
               Money, sorted.
@@ -501,9 +502,9 @@ export function MasterBoardView() {
             {/* List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
-                { desc: 'Pizza Night', amount: '₹1,200', paidBy: 'Aman', split: 'Equal', date: 'Apr 20', icon: '🍕' },
-                { desc: 'Groceries', amount: '₹850', paidBy: 'Riya', split: 'Equal', date: 'Apr 18', icon: '🧺' },
-                { desc: 'Electricity Bill', amount: '₹1,200', paidBy: 'Alex', split: 'Equal', date: 'Apr 15', icon: '⚡' }
+                { desc: 'Pizza Night', amount: '₹1,200', paidBy: 'Aman', split: 'Equal', date: 'Apr 20', iconType: 'food' },
+                { desc: 'Groceries', amount: '₹850', paidBy: 'Riya', split: 'Equal', date: 'Apr 18', iconType: 'shopping' },
+                { desc: 'Electricity Bill', amount: '₹1,200', paidBy: 'Alex', split: 'Equal', date: 'Apr 15', iconType: 'utility' }
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -518,7 +519,9 @@ export function MasterBoardView() {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ fontSize: '18px' }}>{item.icon}</span>
+                    <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'var(--surface-muted)', border: '1.5px solid #30263E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {item.iconType === 'food' ? <Utensils size={14} color="#30263E" /> : item.iconType === 'utility' ? <Zap size={14} color="#30263E" /> : <ShoppingBag size={14} color="#30263E" />}
+                    </div>
                     <div>
                       <div style={{ fontSize: '14px', fontWeight: 800, color: '#30263E' }}>{item.desc}</div>
                       <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{item.split} Split · {item.date}</div>
@@ -538,7 +541,7 @@ export function MasterBoardView() {
             className="nb-glass-card"
             style={{
               padding: '20px',
-              background: 'linear-gradient(145deg, #F5F0FF 0%, #C5B2FF 100%)',
+              background: '#FFFFFF',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between'
@@ -575,7 +578,7 @@ export function MasterBoardView() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span className="nb-view-tag" style={{ background: 'var(--arcade-lilac)' }}>
-              🛒 3. Shared Shopping
+              3. Shared Shopping
             </span>
             <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#30263E' }}>
               The apartment shopping list
@@ -672,7 +675,7 @@ export function MasterBoardView() {
               alignItems: 'center',
               justifyContent: 'center',
               textAlign: 'center',
-              background: 'linear-gradient(135deg, #FFF9E6 0%, #E6FDF0 100%)'
+              background: '#FFFFFF'
             }}
           >
             <PixelBasket size={80} />
@@ -693,7 +696,7 @@ export function MasterBoardView() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span className="nb-view-tag" style={{ background: 'var(--pixel-mint)' }}>
-              🧹 4. Chores & Routine
+              4. Chores & Routine
             </span>
             <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#30263E' }}>
               Keeping the place together.
@@ -788,7 +791,7 @@ export function MasterBoardView() {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              background: 'linear-gradient(135deg, #F5F0FF 0%, #FFE88A 100%)'
+              background: '#FFFFFF'
             }}
           >
             <div>
@@ -823,7 +826,7 @@ export function MasterBoardView() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span className="nb-view-tag" style={{ background: 'var(--dream-sky)' }}>
-              📅 5. Bills, Polls & Activity
+              5. Bills, Polls & Activity
             </span>
             <div style={{ display: 'flex', gap: '6px', fontSize: '15px', fontWeight: 800 }}>
               <span>Bills</span> · <span>Polls</span> · <span>Activity</span>
@@ -983,7 +986,7 @@ export function MasterBoardView() {
       >
         {/* Left: Design System Title */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '20px' }}>⭐</span>
+          <PixelSparkle size={20} />
           <div>
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: '15px', fontWeight: 800 }}>
               Design System
@@ -1052,7 +1055,7 @@ export function MasterBoardView() {
           </div>
         </div>
 
-        {/* Warm Mascot Motto */}
+        {/* Mascot Motto */}
         <div
           style={{
             background: 'var(--pixel-pink)',
@@ -1065,7 +1068,7 @@ export function MasterBoardView() {
             color: '#30263E'
           }}
         >
-          A more organized home, together. 🐱💖
+          A more organized home, together.
         </div>
       </footer>
 
@@ -1190,7 +1193,7 @@ export function MasterBoardView() {
               </div>
 
               <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                ℹ️ Note: This records an agreed peer ledger settlement (e.g. UPI or cash) to update household balances.
+                Note: This records an agreed peer ledger settlement (e.g. UPI or cash) to update household balances.
               </p>
 
               <button type="submit" className="nb-btn nb-btn-mint" style={{ marginTop: '4px' }}>
