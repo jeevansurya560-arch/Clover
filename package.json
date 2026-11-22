@@ -1,0 +1,38 @@
+{
+  "name": "roomsync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RoomSync — Collaborative real-time shared household workspace for roommates",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:worker": "npm run dev --workspace=apps/worker",
+    "build": "npm run build --workspaces --if-present",
+    "test": "node scripts/run-tests.js",
+    "test:finance": "node tests/financial/finance.test.js",
+    "test:api": "node tests/integration/api.test.js",
+    "test:security": "node tests/security/security.test.js",
+    "lint": "node scripts/lint-check.js",
+    "docker:up": "node scripts/wait-docker.js",
+    "docker:down": "docker compose down",
+    "db:migrate": "node apps/api/src/database/migrate.js",
+    "db:seed": "node apps/api/src/database/seed.js"
+  },
+  "keywords": [
+    "household",
+    "roommates",
+    "finance",
+    "chores",
+    "realtime",
+    "nextjs",
+    "fastify"
+  ],
+  "author": "RoomSync Team",
+  "license": "MIT"
+}
