@@ -43,6 +43,7 @@ async function queryDb(sql, params = []) {
   try {
     return await pool.query(sql, params);
   } catch (err) {
+    console.error('[queryDb error]', err.message);
     return null;
   }
 }
@@ -346,7 +347,9 @@ export const repository = {
         await client.query('COMMIT');
         return { ...exp, amount_paise: Number(exp.amount_paise), shares: calculatedShares };
       } catch (err) {
-        await client.query('ROLLBACK');
+        console.error('[createExpense error]', err.message || err);
+        try { await client.query('ROLLBACK'); } catch {}
+        throw err;
       } finally {
         client.release();
       }

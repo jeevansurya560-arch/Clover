@@ -1,3 +1,4 @@
+import EventEmitter from 'node:events';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import sensible from '@fastify/sensible';
@@ -18,33 +19,45 @@ import { pollRoutes } from './modules/polls/routes.js';
 import { activityRoutes } from './modules/activity/routes.js';
 import { analyticsRoutes } from './modules/analytics/routes.js';
 
-export async function buildApp() {
-  const app = Fastify({
-    logger: {
-      level: config.nodeEnv === 'test' ? 'silent' : 'info'
-    }
-  });
+export async function buildApp(options = {}) {
+  const isWorker = options.isWorker || typeof WebSocketPair !== 'undefined' || process.env.CLOUDFLARE_WORKER === 'true';
 
-  await app.register(cors, {
+  const fastifyOptions = {
+    logger: false,
+    pluginTimeout: 0
+  };
+
+  if (isWorker) {
+    const dummyServer = new EventEmitter();
+    dummyServer.address = () => ({ port: 80, address: '127.0.0.1' });
+    dummyServer.listen = (opts, cb) => { if (typeof opts === 'function') opts(); else if (cb) cb(); };
+    dummyServer.close = (cb) => { if (cb) cb(); };
+    fastifyOptions.serverFactory = () => dummyServer;
+  }
+
+  const app = Fastify(fastifyOptions);
+
+  app.register(cors, {
     origin: true,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
   });
 
-  await app.register(sensible);
+  app.register(sensible);
 
   // Register domain routes
-  await app.register(healthRoutes);
-  await app.register(authRoutes);
-  await app.register(householdRoutes);
-  await app.register(expenseRoutes);
-  await app.register(shoppingRoutes);
-  await app.register(choreRoutes);
-  await app.register(billRoutes);
-  await app.register(pollRoutes);
-  await app.register(activityRoutes);
-  await app.register(analyticsRoutes);
+  app.register(healthRoutes);
+  app.register(authRoutes);
+  app.register(householdRoutes);
+  app.register(expenseRoutes);
+  app.register(shoppingRoutes);
+  app.register(choreRoutes);
+  app.register(billRoutes);
+  app.register(pollRoutes);
+  app.register(activityRoutes);
+  app.register(analyticsRoutes);
 
+  await app.ready();
   return app;
 }
 
@@ -63,7 +76,7 @@ export async function startServer() {
     console.log(`[RoomSync Realtime] Socket.IO enabled on port ${config.port}`);
     return app;
   } catch (err) {
-    app.log.error(err);
+    console.error('[RoomSync API Error]', err);
     process.exit(1);
   }
 }

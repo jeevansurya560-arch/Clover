@@ -14,7 +14,7 @@
     "not_found_handling": "single-page-application"
   },
 
-  // Real-Time Coordination via Cloudflare Durable Objects
+  // Real-Time Coordination via Cloudflare Durable Objects (SQLite backed for Free tier compatibility)
   "durable_objects": {
     "bindings": [
       {
@@ -26,7 +26,7 @@
   "migrations": [
     {
       "tag": "v1",
-      "new_classes": ["HouseholdRealtimeDO"]
+      "new_sqlite_classes": ["HouseholdRealtimeDO"]
     }
   ],
 

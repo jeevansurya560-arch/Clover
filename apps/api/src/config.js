@@ -10,6 +10,7 @@ export function validateEnv(env = process.env) {
   const nodeEnv = env.NODE_ENV || 'development';
   const isProduction = nodeEnv === 'production';
   const isStrict = isProduction || env.STRICT_ENV === 'true';
+  const isCloudflare = typeof WebSocketPair !== 'undefined' || env.CLOUDFLARE_WORKER === 'true' || env.CF_PAGES === '1';
 
   const errors = [];
   const rawDbUrl = env.DATABASE_URL;
@@ -24,9 +25,9 @@ export function validateEnv(env = process.env) {
       errors.push('DATABASE_URL points to localhost/127.0.0.1 in production. Provide a valid external PostgreSQL connection string (or set ALLOW_LOCALHOST_IN_PROD=true if intentional).');
     }
 
-    if (!rawRedisUrl || rawRedisUrl.trim() === '') {
+    if (!isCloudflare && (!rawRedisUrl || rawRedisUrl.trim() === '')) {
       errors.push('REDIS_URL is required in production mode. Set a valid Redis connection string.');
-    } else if (!allowLocalhost && (rawRedisUrl.includes('localhost') || rawRedisUrl.includes('127.0.0.1'))) {
+    } else if (!isCloudflare && !allowLocalhost && (rawRedisUrl.includes('localhost') || rawRedisUrl.includes('127.0.0.1'))) {
       errors.push('REDIS_URL points to localhost/127.0.0.1 in production. Provide a valid external Redis connection string (or set ALLOW_LOCALHOST_IN_PROD=true if intentional).');
     }
 
